@@ -8,17 +8,15 @@ class ClockStateManage {
     state.min = min ?? state.min;
 
     if (state.hour == 0 && state.min == 0) {
-      currentStateIndex = 1;
+      state = state.nextState();
     }
   }
 
   void incTime() {
-    clock.incTime();
+    state.incTime();
   }
 
-  ClockState set() {
-    currentStateIndex = (currentStateIndex + 1) % 3;
-    state = states[currentStateIndex];
-    return state;
+  void nextState() {
+    state = state.nextState();
   }
 }
