@@ -7,7 +7,7 @@ class ClockStateManage {
     SetMinClockState()
   ];
 
-  int state;
+  int currentState = 0;
 
   final NormalClockState clock = NormalClockState();
 
@@ -16,5 +16,8 @@ class ClockStateManage {
     clock.min = min ?? clock.min;
   }
 
-  ClockState nextState() {}
+  ClockState nextState() {
+    currentState = (currentState + 1) % 3;
+    return states[currentState];
+  }
 }
