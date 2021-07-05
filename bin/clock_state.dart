@@ -3,16 +3,17 @@ abstract class ClockState {
   int? min;
   ClockState({this.hour = 0, this.min = 0});
   void incTime();
+  ClockState nextState();
 }
 
 class NormalClockState extends ClockState {
-  static final NormalClockState _instance = NormalClockState.internal();
-
-  factory NormalClockState() => _instance;
-
-  NormalClockState.internal() : super(hour: 0, min: 0);
+  NormalClockState({hour, min}) : super(hour: hour, min: min);
   @override
   void incTime() {}
+  @override
+  SetHourClockState nextState() {
+    return SetHourClockState(hour: hour, min: min);
+  }
 }
 
 class SetHourClockState extends ClockState {
@@ -21,6 +22,11 @@ class SetHourClockState extends ClockState {
   void incTime() {
     hour = (hour! + 1) % 24;
   }
+
+  @override
+  SetMinClockState nextState() {
+    return SetMinClockState(hour: hour, min: min);
+  }
 }
 
 class SetMinClockState extends ClockState {
@@ -28,5 +34,10 @@ class SetMinClockState extends ClockState {
   @override
   void incTime() {
     min = (min! + 1) % 60;
+  }
+
+  @override
+  NormalClockState nextState() {
+    return NormalClockState(hour: hour, min: min);
   }
 }

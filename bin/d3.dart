@@ -16,8 +16,12 @@ void main(List<String> arguments) {
   commandList.forEach((command) {
     if (command == 'set') {
       manage.set();
+      print('set ${manage.state.hour} ${manage.state.min}');
+      print('current ${manage.currentStateIndex}');
     } else if (command == 'inc') {
       manage.state.incTime();
+      print('inc ${manage.state.hour} ${manage.state.min}');
+      print('current ${manage.currentStateIndex}');
     }
   });
 
