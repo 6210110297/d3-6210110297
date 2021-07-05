@@ -24,6 +24,10 @@ class ClockStateManage {
   ClockState set() {
     currentStateIndex = (currentStateIndex + 1) % 3;
     state = states[currentStateIndex];
+    if (currentStateIndex != 0) {
+      state.hour = clock.hour;
+      state.min = clock.min;
+    }
     return state;
   }
 }

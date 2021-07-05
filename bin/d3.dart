@@ -13,13 +13,13 @@ void main(List<String> arguments) {
   } else {
     manage = ClockStateManage(hour: 0, min: 0);
   }
-  // commandList.forEach((command) {
-  //   if (command == 'set') {
-  //     manage.set();
-  //   } else if (command == 'inc') {
-  //     manage.state.incTime();
-  //   }
-  // });
+  commandList.forEach((command) {
+    if (command == 'set') {
+      manage.set();
+    } else if (command == 'inc') {
+      manage.state.incTime();
+    }
+  });
 
   print('Now, It is ${manage.state.hour}:${manage.state.min}');
 }
