@@ -1,30 +1,21 @@
 abstract class ClockState {
-  final int? hour;
-  final int? min;
-  ClockState({this.hour=0,this.min=0});
-  nextState();
+  int? hour;
+  int? min;
+  ClockState({this.hour = 0, this.min = 0});
 }
 
 class NormalClockState extends ClockState {
-  
-
   static final NormalClockState _instance = NormalClockState.internal();
 
-  factory NormalClockState({int? hour,int? min}){
-    if(hour==0&&min==0){
-      
-    }
-    return 
-  }
+  factory NormalClockState() => _instance;
 
-  NormalClockState.internal()
-      : super(hour: 0,min: 0)
-
-  @override
-  newState(){
-    return SetHourClockState()
-  }
+  NormalClockState.internal() : super(hour: 0, min: 0);
 }
 
+class SetHourClockState extends ClockState {
+  SetHourClockState({hour, min}) : super(hour: hour, min: min);
+}
 
-class SetHourClockState extends ClockState {}
+class SetMinClockState extends ClockState {
+  SetMinClockState({hour, min}) : super(hour: hour, min: min);
+}
